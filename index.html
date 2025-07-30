@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why Roots to Fruits Matters - Bootstrap 5</title>
+    <title>Why Roots to Fruits Matters - Bootstrap 5 Table</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -11,12 +11,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding: 2rem 1rem;
         }
         
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
         }
         
         .header-title {
@@ -25,6 +25,7 @@
             padding: 2rem;
             margin-bottom: 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
         }
         
         .header-title h1 {
@@ -41,80 +42,97 @@
             margin-top: 0.5rem;
         }
         
-        .content-grid {
+        .badge-custom {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .table-container {
             background: white;
             border-radius: 0 0 15px 15px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
+        .custom-table {
+            margin: 0;
+            border: none;
+        }
+        
+        .custom-table thead th {
+            border: none;
+            padding: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
         .focus-area-header {
             background: #e67e22;
             color: white;
-            padding: 1rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
         }
         
         .student-gains-header {
             background: #f39c12;
             color: white;
-            padding: 1rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
         }
         
-        .content-item {
-            padding: 1.2rem;
+        .custom-table tbody td {
+            border: none;
             border-bottom: 1px solid #ecf0f1;
+            padding: 1.5rem;
+            vertical-align: top;
             transition: all 0.3s ease;
             position: relative;
         }
         
-        .content-item:last-child {
+        .custom-table tbody tr:last-child td {
             border-bottom: none;
         }
         
-        .content-item:hover {
+        .custom-table tbody tr:hover td {
             background: #f8f9fa;
-            transform: translateX(5px);
         }
         
-        .focus-area {
+        .focus-area-cell {
             background: #ebf3fd;
             border-left: 4px solid #3498db;
         }
         
-        .focus-area:hover {
-            background: #dae9f7;
+        .focus-area-cell:hover {
+            background: #dae9f7 !important;
         }
         
-        .student-gain {
+        .student-gain-cell {
             background: #fff8e1;
             border-left: 4px solid #f39c12;
         }
         
-        .student-gain:hover {
-            background: #fff3cd;
+        .student-gain-cell:hover {
+            background: #fff3cd !important;
         }
         
-        .content-item h5 {
+        .content-title {
             color: #2c3e50;
             font-weight: 600;
             margin-bottom: 0.5rem;
             font-size: 1rem;
         }
         
-        .content-item p {
+        .content-description {
             color: #5d6d7e;
             margin: 0;
             font-size: 0.9rem;
             line-height: 1.4;
         }
         
-        .icon {
+        .table-icon {
             position: absolute;
             right: 1rem;
             top: 50%;
@@ -123,11 +141,11 @@
             opacity: 0.6;
         }
         
-        .focus-area .icon {
+        .focus-area-cell .table-icon {
             color: #3498db;
         }
         
-        .student-gain .icon {
+        .student-gain-cell .table-icon {
             color: #f39c12;
         }
         
@@ -140,28 +158,106 @@
                 font-size: 1rem;
             }
             
-            .content-item {
+            .custom-table thead th {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .custom-table tbody td {
                 padding: 1rem;
             }
             
-            .icon {
+            .table-icon {
                 display: none;
+            }
+            
+            /* Stack table columns on mobile */
+            .custom-table,
+            .custom-table thead,
+            .custom-table tbody,
+            .custom-table th,
+            .custom-table td,
+            .custom-table tr {
+                display: block;
+            }
+            
+            .custom-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            .custom-table tr {
+                margin-bottom: 1rem;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .custom-table td {
+                border: none !important;
+                position: relative;
+                padding: 1rem !important;
+            }
+            
+            .custom-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: 600;
+                color: #2c3e50;
+            }
+            
+            .custom-table td .content-title {
+                margin-left: 50%;
+            }
+            
+            .custom-table td .content-description {
+                margin-left: 50%;
             }
         }
         
-        .badge-custom {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.8rem;
+        .additional-cards {
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
             margin-bottom: 1rem;
-            display: inline-block;
+        }
+        
+        .feature-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: #5d6d7e;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
     <div class="main-container">
+        <!-- Header Section -->
         <div class="header-title">
             <div class="badge-custom">
                 <i class="fas fa-seedling me-2"></i>Educational Framework
@@ -170,120 +266,114 @@
             <p class="subtitle">Building Strong Foundations for Lifelong Success</p>
         </div>
         
-        <div class="content-grid">
-            <div class="row g-0">
-                <!-- Focus Area Column -->
-                <div class="col-lg-6">
-                    <div class="focus-area-header">
-                        <i class="fas fa-bullseye me-2"></i>Focus Area
-                    </div>
-                    
-                    <div class="content-item focus-area">
-                        <h5>Self-Discovery</h5>
-                        <p>Encouraging students to explore their interests, strengths, and passions through guided reflection and experiential learning.</p>
-                        <i class="fas fa-search icon"></i>
-                    </div>
-                    
-                    <div class="content-item focus-area">
-                        <h5>Peer Bonding</h5>
-                        <p>Building meaningful relationships and collaborative networks that support academic and personal growth.</p>
-                        <i class="fas fa-users icon"></i>
-                    </div>
-                    
-                    <div class="content-item focus-area">
-                        <h5>Career Readiness</h5>
-                        <p>Developing essential skills and knowledge needed to succeed in the modern workplace and professional environments.</p>
-                        <i class="fas fa-briefcase icon"></i>
-                    </div>
-                    
-                    <div class="content-item focus-area">
-                        <h5>Mental Agility</h5>
-                        <p>Enhancing cognitive flexibility, problem-solving abilities, and adaptive thinking skills for complex challenges.</p>
-                        <i class="fas fa-brain icon"></i>
-                    </div>
-                    
-                    <div class="content-item focus-area">
-                        <h5>Global Perspective</h5>
-                        <p>Cultivating awareness of global issues, cultural diversity, and international opportunities for growth.</p>
-                        <i class="fas fa-globe icon"></i>
+        <!-- Main Table Container -->
+        <div class="table-container">
+            <table class="table custom-table">
+                <thead>
+                    <tr>
+                        <th class="focus-area-header" style="width: 50%;">
+                            <i class="fas fa-bullseye me-2"></i>Focus Area
+                        </th>
+                        <th class="student-gains-header" style="width: 50%;">
+                            <i class="fas fa-graduation-cap me-2"></i>What Students Gain
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="focus-area-cell" data-label="Focus Area:">
+                            <h5 class="content-title">Self-Discovery</h5>
+                            <p class="content-description">Encouraging students to explore their interests, strengths, and passions through guided reflection and experiential learning.</p>
+                            <i class="fas fa-search table-icon"></i>
+                        </td>
+                        <td class="student-gain-cell" data-label="Students Gain:">
+                            <h5 class="content-title">Personal awareness, values, and clarity</h5>
+                            <p class="content-description">Deep understanding of individual strengths, core values, and clear direction for personal and professional development.</p>
+                            <i class="fas fa-compass table-icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="focus-area-cell" data-label="Focus Area:">
+                            <h5 class="content-title">Peer Bonding</h5>
+                            <p class="content-description">Building meaningful relationships and collaborative networks that support academic and personal growth.</p>
+                            <i class="fas fa-users table-icon"></i>
+                        </td>
+                        <td class="student-gain-cell" data-label="Students Gain:">
+                            <h5 class="content-title">Lasting friendships, collaboration skills</h5>
+                            <p class="content-description">Strong interpersonal relationships and the ability to work effectively in diverse teams and collaborative environments.</p>
+                            <i class="fas fa-handshake table-icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="focus-area-cell" data-label="Focus Area:">
+                            <h5 class="content-title">Career Readiness</h5>
+                            <p class="content-description">Developing essential skills and knowledge needed to succeed in the modern workplace and professional environments.</p>
+                            <i class="fas fa-briefcase table-icon"></i>
+                        </td>
+                        <td class="student-gain-cell" data-label="Students Gain:">
+                            <h5 class="content-title">Confidence in communication, leadership, and business ethics</h5>
+                            <p class="content-description">Enhanced presentation skills, leadership capabilities, and strong ethical foundation for professional success.</p>
+                            <i class="fas fa-megaphone table-icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="focus-area-cell" data-label="Focus Area:">
+                            <h5 class="content-title">Mental Agility</h5>
+                            <p class="content-description">Enhancing cognitive flexibility, problem-solving abilities, and adaptive thinking skills for complex challenges.</p>
+                            <i class="fas fa-brain table-icon"></i>
+                        </td>
+                        <td class="student-gain-cell" data-label="Students Gain:">
+                            <h5 class="content-title">Decision-making under pressure, mindfulness, and creativity</h5>
+                            <p class="content-description">Ability to make sound decisions in challenging situations while maintaining creative thinking and mindful awareness.</p>
+                            <i class="fas fa-lightbulb table-icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="focus-area-cell" data-label="Focus Area:">
+                            <h5 class="content-title">Global Perspective</h5>
+                            <p class="content-description">Cultivating awareness of global issues, cultural diversity, and international opportunities for growth.</p>
+                            <i class="fas fa-globe table-icon"></i>
+                        </td>
+                        <td class="student-gain-cell" data-label="Students Gain:">
+                            <h5 class="content-title">Exposure to real-world business expectations and social balance</h5>
+                            <p class="content-description">Practical understanding of professional environments and the skills to maintain healthy work-life integration.</p>
+                            <i class="fas fa-balance-scale table-icon"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Additional Features Section -->
+        <div class="additional-cards">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon text-primary">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5 class="feature-title">Progress Tracking</h5>
+                        <p class="feature-description">Monitor student development and achievement milestones throughout their educational journey with comprehensive analytics.</p>
                     </div>
                 </div>
                 
-                <!-- What Students Gain Column -->
-                <div class="col-lg-6">
-                    <div class="student-gains-header">
-                        <i class="fas fa-graduation-cap me-2"></i>What Students Gain
-                    </div>
-                    
-                    <div class="content-item student-gain">
-                        <h5>Personal awareness, values, and clarity</h5>
-                        <p>Deep understanding of individual strengths, core values, and clear direction for personal and professional development.</p>
-                        <i class="fas fa-compass icon"></i>
-                    </div>
-                    
-                    <div class="content-item student-gain">
-                        <h5>Lasting friendships, collaboration skills</h5>
-                        <p>Strong interpersonal relationships and the ability to work effectively in diverse teams and collaborative environments.</p>
-                        <i class="fas fa-handshake icon"></i>
-                    </div>
-                    
-                    <div class="content-item student-gain">
-                        <h5>Confidence in communication, leadership, and business ethics</h5>
-                        <p>Enhanced presentation skills, leadership capabilities, and strong ethical foundation for professional success.</p>
-                        <i class="fas fa-megaphone icon"></i>
-                    </div>
-                    
-                    <div class="content-item student-gain">
-                        <h5>Decision-making under pressure, mindfulness, and creativity</h5>
-                        <p>Ability to make sound decisions in challenging situations while maintaining creative thinking and mindful awareness.</p>
-                        <i class="fas fa-lightbulb icon"></i>
-                    </div>
-                    
-                    <div class="content-item student-gain">
-                        <h5>Exposure to real-world business expectations and social balance</h5>
-                        <p>Practical understanding of professional environments and the skills to maintain healthy work-life integration.</p>
-                        <i class="fas fa-balance-scale icon"></i>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon text-success">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h5 class="feature-title">Recognition System</h5>
+                        <p class="feature-description">Celebrate achievements and milestones with a comprehensive recognition and rewards program that motivates continued excellence.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Additional Features Section -->
-    <div class="main-container mt-4">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center p-4">
-                        <div class="mb-3">
-                            <i class="fas fa-chart-line fa-3x text-primary"></i>
+                
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon text-warning">
+                            <i class="fas fa-rocket"></i>
                         </div>
-                        <h5 class="card-title">Progress Tracking</h5>
-                        <p class="card-text">Monitor student development and achievement milestones throughout their educational journey.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center p-4">
-                        <div class="mb-3">
-                            <i class="fas fa-award fa-3x text-success"></i>
-                        </div>
-                        <h5 class="card-title">Recognition System</h5>
-                        <p class="card-text">Celebrate achievements and milestones with a comprehensive recognition and rewards program.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center p-4">
-                        <div class="mb-3">
-                            <i class="fas fa-rocket fa-3x text-warning"></i>
-                        </div>
-                        <h5 class="card-title">Future Ready</h5>
-                        <p class="card-text">Prepare students for tomorrow's challenges with cutting-edge skills and adaptive learning approaches.</p>
+                        <h5 class="feature-title">Future Ready</h5>
+                        <p class="feature-description">Prepare students for tomorrow's challenges with cutting-edge skills and adaptive learning approaches for career success.</p>
                     </div>
                 </div>
             </div>
@@ -292,9 +382,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Add smooth scrolling and interactive elements
+        // Add smooth animations and interactions
         document.addEventListener('DOMContentLoaded', function() {
-            // Add fade-in animation on scroll
+            // Fade in animation for table rows
+            const tableRows = document.querySelectorAll('.custom-table tbody tr');
+            tableRows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateY(20px)';
+                row.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // Fade in animation for feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -309,12 +413,23 @@
                 });
             }, observerOptions);
             
-            // Observe all content items
-            document.querySelectorAll('.content-item, .card').forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(item);
+            featureCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            // Add hover effects for table cells
+            const tableCells = document.querySelectorAll('.custom-table tbody td');
+            tableCells.forEach(cell => {
+                cell.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                });
+                
+                cell.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
             });
         });
     </script>
