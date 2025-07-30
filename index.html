@@ -3,339 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Calendar - Bootstrap 5</title>
+    <title>Why Roots to Fruits Matters - Bootstrap 5</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        .event-card {
-            border-radius: 8px;
-            border: 2px solid #ddd;
-            margin-bottom: 20px;
-            transition: transform 0.2s;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
-        .event-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .event-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff6b35;
-        }
-        .event-day {
-            font-size: 0.75rem;
-            color: #666;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-        .event-title {
-            font-weight: bold;
-            color: #333;
-            margin: 0;
-            font-size: 0.95rem;
-        }
-        .event-description {
-            color: #666;
-            font-size: 0.85rem;
-            margin: 0;
-        }
-        .calendar-container {
-            max-width: 900px;
+        
+        .main-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem 1rem;
         }
-        .event-left {
-            border-left: 4px solid #ff6b35;
-            padding-left: 15px;
+        
+        .header-title {
+            background: white;
+            border-radius: 15px 15px 0 0;
+            padding: 2rem;
+            margin-bottom: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .header-title h1 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .header-title .subtitle {
+            color: #34495e;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .content-grid {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .focus-area-header {
+            background: #e67e22;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .student-gains-header {
+            background: #f39c12;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .content-item {
+            padding: 1.2rem;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .content-item:last-child {
+            border-bottom: none;
+        }
+        
+        .content-item:hover {
+            background: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .focus-area {
+            background: #ebf3fd;
+            border-left: 4px solid #3498db;
+        }
+        
+        .focus-area:hover {
+            background: #dae9f7;
+        }
+        
+        .student-gain {
+            background: #fff8e1;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .student-gain:hover {
+            background: #fff3cd;
+        }
+        
+        .content-item h5 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .content-item p {
+            color: #5d6d7e;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+        
+        .focus-area .icon {
+            color: #3498db;
+        }
+        
+        .student-gain .icon {
+            color: #f39c12;
+        }
+        
+        @media (max-width: 768px) {
+            .header-title h1 {
+                font-size: 2rem;
+            }
+            
+            .header-title .subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-item {
+                padding: 1rem;
+            }
+            
+            .icon {
+                display: none;
+            }
+        }
+        
+        .badge-custom {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
     </style>
 </head>
-<body class="bg-light">
-    <div class="calendar-container">
-        <div class="row g-3">
-            <!-- Day 01 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">01</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">SHUBHAARAMBH</h6>
-                            <p class="event-description">Batch Opening</p>
-                        </div>
+<body>
+    <div class="main-container">
+        <div class="header-title">
+            <div class="badge-custom">
+                <i class="fas fa-seedling me-2"></i>Educational Framework
+            </div>
+            <h1>Why Roots to Fruits Matters</h1>
+            <p class="subtitle">Building Strong Foundations for Lifelong Success</p>
+        </div>
+        
+        <div class="content-grid">
+            <div class="row g-0">
+                <!-- Focus Area Column -->
+                <div class="col-lg-6">
+                    <div class="focus-area-header">
+                        <i class="fas fa-bullseye me-2"></i>Focus Area
+                    </div>
+                    
+                    <div class="content-item focus-area">
+                        <h5>Self-Discovery</h5>
+                        <p>Encouraging students to explore their interests, strengths, and passions through guided reflection and experiential learning.</p>
+                        <i class="fas fa-search icon"></i>
+                    </div>
+                    
+                    <div class="content-item focus-area">
+                        <h5>Peer Bonding</h5>
+                        <p>Building meaningful relationships and collaborative networks that support academic and personal growth.</p>
+                        <i class="fas fa-users icon"></i>
+                    </div>
+                    
+                    <div class="content-item focus-area">
+                        <h5>Career Readiness</h5>
+                        <p>Developing essential skills and knowledge needed to succeed in the modern workplace and professional environments.</p>
+                        <i class="fas fa-briefcase icon"></i>
+                    </div>
+                    
+                    <div class="content-item focus-area">
+                        <h5>Mental Agility</h5>
+                        <p>Enhancing cognitive flexibility, problem-solving abilities, and adaptive thinking skills for complex challenges.</p>
+                        <i class="fas fa-brain icon"></i>
+                    </div>
+                    
+                    <div class="content-item focus-area">
+                        <h5>Global Perspective</h5>
+                        <p>Cultivating awareness of global issues, cultural diversity, and international opportunities for growth.</p>
+                        <i class="fas fa-globe icon"></i>
+                    </div>
+                </div>
+                
+                <!-- What Students Gain Column -->
+                <div class="col-lg-6">
+                    <div class="student-gains-header">
+                        <i class="fas fa-graduation-cap me-2"></i>What Students Gain
+                    </div>
+                    
+                    <div class="content-item student-gain">
+                        <h5>Personal awareness, values, and clarity</h5>
+                        <p>Deep understanding of individual strengths, core values, and clear direction for personal and professional development.</p>
+                        <i class="fas fa-compass icon"></i>
+                    </div>
+                    
+                    <div class="content-item student-gain">
+                        <h5>Lasting friendships, collaboration skills</h5>
+                        <p>Strong interpersonal relationships and the ability to work effectively in diverse teams and collaborative environments.</p>
+                        <i class="fas fa-handshake icon"></i>
+                    </div>
+                    
+                    <div class="content-item student-gain">
+                        <h5>Confidence in communication, leadership, and business ethics</h5>
+                        <p>Enhanced presentation skills, leadership capabilities, and strong ethical foundation for professional success.</p>
+                        <i class="fas fa-megaphone icon"></i>
+                    </div>
+                    
+                    <div class="content-item student-gain">
+                        <h5>Decision-making under pressure, mindfulness, and creativity</h5>
+                        <p>Ability to make sound decisions in challenging situations while maintaining creative thinking and mindful awareness.</p>
+                        <i class="fas fa-lightbulb icon"></i>
+                    </div>
+                    
+                    <div class="content-item student-gain">
+                        <h5>Exposure to real-world business expectations and social balance</h5>
+                        <p>Practical understanding of professional environments and the skills to maintain healthy work-life integration.</p>
+                        <i class="fas fa-balance-scale icon"></i>
                     </div>
                 </div>
             </div>
-
-            <!-- Day 02 -->
+        </div>
+    </div>
+    
+    <!-- Additional Features Section -->
+    <div class="main-container mt-4">
+        <div class="row g-4">
             <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">02</div>
-                            <div class="event-day">DAY</div>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-chart-line fa-3x text-primary"></i>
                         </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">ICEZEN</h6>
-                            <p class="event-description">Ice Breaking</p>
-                        </div>
+                        <h5 class="card-title">Progress Tracking</h5>
+                        <p class="card-text">Monitor student development and achievement milestones throughout their educational journey.</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Day 03 -->
+            
             <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">03</div>
-                            <div class="event-day">DAY</div>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-award fa-3x text-success"></i>
                         </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">JADOO KI CHADI</h6>
-                            <p class="event-description">Mind with Magic</p>
-                        </div>
+                        <h5 class="card-title">Recognition System</h5>
+                        <p class="card-text">Celebrate achievements and milestones with a comprehensive recognition and rewards program.</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Day 04 -->
+            
             <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">04</div>
-                            <div class="event-day">DAY</div>
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-rocket fa-3x text-warning"></i>
                         </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">LAKSHMA</h6>
-                            <p class="event-description">Focus 'N' Dive Deep</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 05 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">05</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">CINELEARN</h6>
-                            <p class="event-description">Move with Movies</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 06 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">06</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">STRESS MANIA</h6>
-                            <p class="event-description">Workshop on Stress Management</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 07 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">07</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">CHAM DE</h6>
-                            <p class="event-description">Discover Self</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 08 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">08</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">A SNAPSHOT</h6>
-                            <p class="event-description">Rewind Time</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 09 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">09</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">TREASURE HUNT</h6>
-                            <p class="event-description">You Must Get It</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 10 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">10</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">AKSHAYAPATRA VISIT</h6>
-                            <p class="event-description">Time to Witness</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 11 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">11</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">WONDER COIN</h6>
-                            <p class="event-description">100 Rupees Activity</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 12 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">12</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">TALENTS DAY</h6>
-                            <p class="event-description">Express your Talent</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 13 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">13</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">SOCIAL CONNECT</h6>
-                            <p class="event-description">Time to Experience the Other Side</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 14 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">14</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">EK MINUTE KA TADKA</h6>
-                            <p class="event-description">Time to Win</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 15 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">15</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">OUT BOUND TIME</h6>
-                            <p class="event-description">Explore 'N' Explore</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 16 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">16</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">INTROSPECTION</h6>
-                            <p class="event-description">Deep Dive</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 17 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">17</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">ASNAPSHOT</h6>
-                            <p class="event-description">Rewind Time</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Day 18 -->
-            <div class="col-md-4">
-                <div class="card event-card h-100">
-                    <div class="card-body d-flex">
-                        <div class="me-3 text-center">
-                            <div class="event-number">18</div>
-                            <div class="event-day">DAY</div>
-                        </div>
-                        <div class="event-left flex-grow-1">
-                            <h6 class="event-title">BACK ON TRACK</h6>
-                            <p class="event-description">Academic Orientation & Course Delivery Plan, Faculty Session</p>
-                        </div>
+                        <h5 class="card-title">Future Ready</h5>
+                        <p class="card-text">Prepare students for tomorrow's challenges with cutting-edge skills and adaptive learning approaches.</p>
                     </div>
                 </div>
             </div>
@@ -343,5 +291,32 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add smooth scrolling and interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all content items
+            document.querySelectorAll('.content-item, .card').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
 </body>
 </html>
